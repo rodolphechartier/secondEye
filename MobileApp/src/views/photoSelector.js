@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import { View, StyleSheet, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Modal from "react-native-modal";
 
-import { showImagePicker, launchCamera, launchImageLibrary } from "react-native-image-picker";
+import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 
 const localStyles = StyleSheet.create({
     containerImage: {
@@ -19,7 +19,7 @@ const localStyles = StyleSheet.create({
     },
     logo: {
         position: 'absolute',
-        top: '10%',
+        top: '5%',
         width: '100%',
         textAlign: 'center',
         color: '#7289DA',

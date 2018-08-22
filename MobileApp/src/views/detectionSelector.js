@@ -5,10 +5,6 @@ import { Button, Divider } from "react-native-elements";
 
 const localStyles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // backgroundColor: '#F5FCFF',
         padding: 15,
         height: null
     },
@@ -71,7 +67,7 @@ export default class detectionSelector extends Component {
                     icon={{ name: 'tag-faces' }}
                     containerViewStyle={localStyles.button}
                     title='DÉTECTION DES ÉMOTIONS'
-                    // onPress={() => this.setState({ modalVisible: true })}
+                    onPress={() => this.props.navigation.navigate('resultsAnalysisView')}
                 />
 
                 <Divider style={localStyles.divider}/>
@@ -90,7 +86,7 @@ export default class detectionSelector extends Component {
                     icon={{ name: 'face' }}
                     containerViewStyle={localStyles.button}
                     title='DÉTECTION DES VISAGES'
-                    // onPress={() => this.setState({ modalVisible: true })}
+                    onPress={() => this.props.navigation.navigate('resultsAnalysisView')}
                 />
 
                 <Divider style={localStyles.divider}/>
@@ -108,7 +104,7 @@ export default class detectionSelector extends Component {
                     icon={{ name: 'photo' }}
                     containerViewStyle={localStyles.button}
                     title='DÉTECTION DE PAYSAGE'
-                    // onPress={() => this.setState({ modalVisible: true })}
+                    onPress={() => this.props.navigation.navigate('resultsAnalysisView')}
                 />
             </ScrollView>
         );

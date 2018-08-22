@@ -5,14 +5,14 @@ import { Button, Divider } from "react-native-elements";
 
 const localStyles = StyleSheet.create({
     container: {
-        backgroundColor: '#F5FCFF',
+        height: null,
         padding: 15
     },
 });
 
 export default class resultsAnalysis extends Component {
     static navigationOptions = {
-        title: 'CHOIX DE LA DÉTECTION',
+        title: 'RÉSULTATS DE LA DÉTECTION',
     };
 
     constructor(props) {
