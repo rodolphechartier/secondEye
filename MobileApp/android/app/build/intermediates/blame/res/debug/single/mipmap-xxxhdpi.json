@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/quentin/Projects/SecondEye/MobileApp/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/home/quentin/Projects/SecondEye/MobileApp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/home/quentin/Projects/gpeetna/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/quentin/Projects/SecondEye/MobileApp/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/home/quentin/Projects/SecondEye/MobileApp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/home/quentin/Projects/gpeetna/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/MobileApp/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher.png",
+        "source": "/home/quentin/Projects/gpeetna/MobileApp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/MobileApp/android/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi/ic_launcher_round.png",
+        "source": "/home/quentin/Projects/gpeetna/MobileApp/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    }
+]

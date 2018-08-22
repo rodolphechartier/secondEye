@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/quentin/Projects/SecondEye/MobileApp/android/app/build/intermediates/res/merged/debug/xml/preferences.xml",
+        "source": "/home/quentin/.android/build-cache/a372920321a6c2d0a10347cef5cd67f41df628f4/output/res/xml/preferences.xml"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/MobileApp/android/app/build/intermediates/res/merged/debug/xml/provider_paths.xml",
+        "source": "/home/quentin/Projects/gpeetna/MobileApp/node_modules/react-native-image-picker/android/build/intermediates/bundles/default/res/xml/provider_paths.xml"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/android/app/build/intermediates/res/merged/debug/xml/preferences.xml",
+        "source": "/home/quentin/.android/build-cache/774e5196ddd698fa8dc3853fb536ccf843b469b2/output/res/xml/preferences.xml"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/MobileApp/android/app/build/intermediates/res/merged/debug/xml/preferences.xml",
+        "source": "/home/quentin/.android/build-cache/cb2428b6fa96106bbe539a421026731cde8cac93/output/res/xml/preferences.xml"
+    },
+    {
+        "merged": "/home/quentin/Projects/gpeetna/android/app/build/intermediates/res/merged/debug/xml/provider_paths.xml",
+        "source": "/home/quentin/Projects/gpeetna/node_modules/react-native-image-picker/android/build/intermediates/bundles/default/res/xml/provider_paths.xml"
+    },
+    {
+        "merged": "/home/quentin/Projects/SecondEye/MobileApp/android/app/build/intermediates/res/merged/debug/xml/provider_paths.xml",
+        "source": "/home/quentin/Projects/SecondEye/MobileApp/node_modules/react-native-image-picker/android/build/intermediates/bundles/default/res/xml/provider_paths.xml"
+    }
+]
