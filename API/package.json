@@ -1,0 +1,33 @@
+{
+  "name": "secondeye-api",
+  "version": "1.0.0",
+  "description": "API for GPE Project : Second Eye",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha server.js",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesratn/secondEye.git"
+  },
+  "keywords": [
+    "GPE",
+    "Second",
+    "EYE",
+    "Vision",
+    "Recognition"
+  ],
+  "author": "Nada MESRATI, Morgane FLAMANT, Anthony SCHATT, Quentin FRELAT, Rodolphe CHARTIER",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mesratn/secondEye/issues"
+  },
+  "homepage": "https://github.com/mesratn/secondEye#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
