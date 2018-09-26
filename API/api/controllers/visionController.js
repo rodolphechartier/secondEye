@@ -35,7 +35,7 @@ exports.get_landscape = function(req, res) {
 
             if (i)
                 response += ','
-            response += '{"message": ' + text '}';
+            response += '{"message": ' + text + '}';
         }
 
         response += ']}'
