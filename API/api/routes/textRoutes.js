@@ -11,9 +11,9 @@ module.exports = function(app) {
 
 	//Route de détection de texte
 	app.route('/detectText')
-		.get(text.detect_text);
+		.post(text.detect_text);
 
 	//Route de lecture de texte
 	app.route('/readText')
-		.get(text.read_text);
+		.post(text.read_text);
 };
