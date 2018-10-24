@@ -55,7 +55,7 @@ export default class resultsAnalysisFace extends Component {
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
 
-                <Text> Résultats de l'analyse </Text>
+                <Text> Résultats de l analyse </Text>
 
                 <Image
                     style={{ height: 400, width: 400}}

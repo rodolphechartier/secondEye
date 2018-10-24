@@ -1,5 +1,5 @@
 import qs from "qs";
-const URL = 'http://192.168.1.136:3000';
+const URL = 'http://192.168.233.148:3000';
 
 // OTHERS FUNCTIONS
 
@@ -38,9 +38,9 @@ export function getEmotions() {
     });
 }
 
-exort function getLandscapes(){
+export function getLandscapes(){
     return RequestHandler(`${URL}/landscapes`, {
-        method: 'POST,
+        method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },

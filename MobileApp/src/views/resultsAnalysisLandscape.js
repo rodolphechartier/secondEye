@@ -4,7 +4,7 @@ import { ScrollView, View, StyleSheet, Text, Image } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
-import { getEmotions } from "../services/Api";
+import { getLanscapes } from "../services/Api";
 
 const localStyles = StyleSheet.create({
 	container: {
@@ -40,7 +40,7 @@ export default class resultsAnalysisLandscape extends Component {
 		const self = this.state;
 		Tts.setDefaultLanguage('en-US');
 		Tts.getInitStatus().then(() => {
-			Tts.speak(self.landscapes.land.message, {
+			Tts.speak(self.landscapes.message, {
 				androidParams: {
 					KEY_PARAM_PAN: -1,
 					KEY_PARAM_VOLUME: 1,
@@ -54,7 +54,7 @@ export default class resultsAnalysisLandscape extends Component {
 		return(
 			<ScrollView contentContainerStyle={localStyles.container}>
 
-                <Text> Résultats de l'analyse </Text>
+                <Text> Résultats de l analyse </Text>
 
                 <Image
                     style={{ height: 400, width: 400}}
