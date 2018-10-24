@@ -37,3 +37,15 @@ export function getEmotions() {
         })
     });
 }
+
+exort function getLandscapes(){
+    return RequestHandler(`${URL}/landscapes`, {
+        method: 'POST,
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: qs.stringify({
+            url: 'https://images.pexels.com/photos/371633/pexels-photo-371633.jpeg?auto=compress&cs=tinysrgb&h=350'
+        })
+    });
+}
