@@ -9,6 +9,7 @@ exports.test_vision = function(req, res) {
 };
 
 exports.get_landscape = function(req, res) {
+    console.log("je suis dedans landscape");
     const sourceImageUrl = req.body.url;
     const params = {
         'visualFeatures': 'Categories,Description,Color',

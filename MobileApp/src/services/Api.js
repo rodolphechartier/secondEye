@@ -1,5 +1,5 @@
 import qs from "qs";
-const URL = 'http://192.168.233.149:3000';
+const URL = 'http://51.75.21.24:3000';
 
 // OTHERS FUNCTIONS
 
@@ -51,7 +51,7 @@ export function getLandscapes(){
 }
 
 export function getTexts(){
-    return RequestHandler(`$(URL)/readText`, {
+    return RequestHandler(`$(URL)/read`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -63,7 +63,7 @@ export function getTexts(){
 }
 
 export function saveFace(){
-    return RequestHandler(`$(URL)/addFace`, {
+    return RequestHandler(`$(URL)/add`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

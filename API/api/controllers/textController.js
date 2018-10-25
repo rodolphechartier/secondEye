@@ -45,6 +45,7 @@ exports.detect_text = function(req, res) {
 
 //lecture de texte
 exports.read_text = function(req, res) {
+    console.log("je suis dedans read text");
     const sourceImageUrl = req.body.url;
     const params = {
         'mode': 'Handwritten',
