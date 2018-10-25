@@ -39,7 +39,7 @@ export function getEmotions() {
 }
 
 export function getLandscapes(){
-    return RequestHandler(`${URL}/landscapes`, {
+    return RequestHandler(`${URL}/landscape`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -51,7 +51,7 @@ export function getLandscapes(){
 }
 
 export function getTexts(){
-    return RequestHandler(`$(URL)/texts`, {
+    return RequestHandler(`$(URL)/readText`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
@@ -63,7 +63,7 @@ export function getTexts(){
 }
 
 export function saveFace(){
-    return RequestHandler(`$(URL)/nomapiback`, {
+    return RequestHandler(`$(URL)/addFace`, {
         method: 'POST',
         headers:{
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
