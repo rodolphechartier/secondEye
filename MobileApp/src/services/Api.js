@@ -1,5 +1,5 @@
 import qs from "qs";
-const URL = 'http://192.168.233.148:3000';
+const URL = 'http://192.168.233.149:3000';
 
 // OTHERS FUNCTIONS
 
@@ -46,6 +46,18 @@ export function getLandscapes(){
         },
         body: qs.stringify({
             url: 'https://images.pexels.com/photos/371633/pexels-photo-371633.jpeg?auto=compress&cs=tinysrgb&h=350'
+        })
+    });
+}
+
+export function getTexts(){
+    return RequestHandler(`$(URL)/texts`, {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: qs.stringify({
+            url: 'https://i.stack.imgur.com/35SY5.png'
         })
     });
 }

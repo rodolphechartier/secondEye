@@ -6,6 +6,7 @@ import photoSelector from "./views/photoSelector";
 import detectionSelector from "./views/detectionSelector";
 import resultsAnalysisFace from "./views/resultsAnalysisFace";
 import resultsAnalysisLandscape from "./views/resultsAnalysisLandscape";
+import resultsAnalysisText from "./views/resultsAnalysisText";
 
 // Style
 const styleOptions = {
@@ -24,5 +25,6 @@ export const AppStack = createStackNavigator({
     photoSelectorView: photoSelector,
     detectionSelectorView: detectionSelector,
     resultsAnalysisFaceView: resultsAnalysisFace,
-    resultsAnalysisLandscapeView: resultsAnalysisLandscape
+    resultsAnalysisLandscapeView: resultsAnalysisLandscape,
+    resultsAnalysisTextView: resultsAnalysisText
 }, styleOptions);
