@@ -66,7 +66,7 @@ export default class detectionSelector extends Component {
                     backgroundColor="#7289DA"
                     icon={{ name: 'tag-faces' }}
                     containerViewStyle={localStyles.button}
-                    title='DÉTECTION DES ÉMOTIONS'
+                    title='DÉTECTION DES ÉMOTIONS & VISAGES'
                     onPress={() => this.props.navigation.navigate('resultsAnalysisFaceView')}
                 />
 
@@ -85,8 +85,8 @@ export default class detectionSelector extends Component {
                     backgroundColor="#7289DA"
                     icon={{ name: 'face' }}
                     containerViewStyle={localStyles.button}
-                    title='DÉTECTION DES VISAGES'
-                    onPress={() => this.props.navigation.navigate('resultsAnalysisFaceView')}
+                    title='DÉTECTION DES TEXTES'
+                    onPress={() => this.props.navigation.navigate('resultsAnalysisTextView')}
                 />
 
                 <Divider style={localStyles.divider}/>
