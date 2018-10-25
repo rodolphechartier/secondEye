@@ -83,6 +83,7 @@ exports.get_faces = function(req, res) {
  * Face:detect
 */
 exports.get_emotions = function(req, res) {
+  console.log("je suis dedans emotions");
   // Request parameters
   var params = {
     "returnFaceId": "true",
