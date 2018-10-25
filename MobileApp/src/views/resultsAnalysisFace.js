@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ScrollView, View, StyleSheet, Text, Image } from 'react-native';
+import { ScrollView, View, StyleSheet, Text, Image, TextInput } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Tts from 'react-native-tts';
 
@@ -23,7 +23,9 @@ export default class resultsAnalysisFace extends Component {
 
         this.state = {
             loading: true,
-            emotions: {}
+            emotions: {},
+            name: '',
+            returnSaveFace: {}
         }
     }
 
@@ -51,6 +53,15 @@ export default class resultsAnalysisFace extends Component {
         });
     }
 
+    onStartSending(){
+        saveFace().then((returnSaveFace) =>{
+            this.setState({
+                save: returnSaveFace
+            });
+            alert(save);
+        }).catch((err) => alert(err + ""));
+    }
+
     render() {
         return (
             <ScrollView contentContainerStyle={localStyles.container}>
@@ -73,6 +84,23 @@ export default class resultsAnalysisFace extends Component {
                     containerViewStyle={{ width: '100%' }}
                     onPress={() => this.onStartReading()}
                 />
+
+                <TextInput
+                    style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                    onChangeText={(name) => this.setState({name})}
+                    value={this.state.name}
+                />
+
+                <Button
+                    raised
+                    disabled={() => this.state.name && this.state.name != ''? false:true}
+                    borderRadius={50}
+                    backgroundColor="#7289DA"
+                    title='ENREGISTRER LE VISAGE ?'
+                    containerViewStyle={{ width: '100%' }}
+                    onPress={() => this.onStartSending()}
+                />
+
 
             </ScrollView>
         );

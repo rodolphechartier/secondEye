@@ -61,3 +61,16 @@ export function getTexts(){
         })
     });
 }
+
+export function saveFace(){
+    return RequestHandler(`$(URL)/nomapiback`, {
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: qs.stringify({
+            url :'https://pbs.twimg.com/profile_images/1007439915917938688/ZsxLbPmx_400x400.jpg',
+            name : 'Tom'
+        })
+    });
+}
