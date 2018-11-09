@@ -1,5 +1,5 @@
 import qs from "qs";
-const URL = 'http://51.75.21.24:3000';
+const URL = 'http://192.168.0.104:3000';
 
 // OTHERS FUNCTIONS
 
@@ -26,14 +26,14 @@ function errorHandler(response) {
         return JSON.parse(response._bodyText);
 }
 
-export function getEmotions() {
+export function getEmotions(image) {
     return RequestHandler(`${URL}/emotions`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
         },
         body: qs.stringify({
-            url: 'https://pbs.twimg.com/profile_images/1007439915917938688/ZsxLbPmx_400x400.jpg'
+            data: image
         })
     });
 }

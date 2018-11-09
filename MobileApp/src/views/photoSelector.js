@@ -3,59 +3,12 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Button, Divider } from "react-native-elements";
 import Modal from "react-native-modal";
-
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
+import Voice from 'react-native-voice';
+import { VoiceBar } from '../components/VoiceBar';
 
-const localStyles = StyleSheet.create({
-    containerImage: {
-        width: '100%',
-        height: '100%'
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        // backgroundColor: '#F5FCFF'
-    },
-    logo: {
-        position: 'absolute',
-        top: '5%',
-        width: '100%',
-        textAlign: 'center',
-        color: '#7289DA',
-        fontWeight: 'bold',
-        fontSize: 38
-    },
-    logoSmall: {
-        color: '#23272A',
-        fontWeight: 'normal'
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: '500',
-        textAlign: 'center',
-        margin: 10,
-        color: '#7289DA'
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-        padding: 50
-    },
-    bottomModal: {
-        justifyContent: "flex-end",
-        margin: 0,
-    },
-    modalContent: {
-        backgroundColor: "white",
-        padding: 22,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 4,
-        borderColor: "rgba(0, 0, 0, 0.1)"
-    }
-});
+import { AppStyle } from "../utils/Styles";
+
 
 const pickerOptions = {
     title: 'Choix de la photo',
@@ -65,7 +18,7 @@ const pickerOptions = {
     }
 }
 
-export default class photoSelector extends Component {
+export default class PhotoSelector extends Component {
     static navigationOptions = {
         header: null,
     };
@@ -74,11 +27,42 @@ export default class photoSelector extends Component {
         super(props);
 
         this.state = {
-            modalVisible: false
+            modalVisible: false,
+
+            voice: {
+                enable: false,
+                results: []
+            }
         }
+
+        // Bind Voice
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
+        Voice.onSpeechResults = this.onSpeechResults.bind(this);
     }
 
     componentDidMount() { }
+
+    componentWillUnmount() {
+        Voice.destroy().then(Voice.removeAllListeners);
+    }
+
+    async onSpeechSwitch() {
+        const self = this.state;
+        self.voice.enable = !self.voice.enable;
+        if (self.voice.enable == true)
+            await Voice.start('fr-FR');
+        else {
+            await Voice.stop();
+            self.voice.results = [];
+        }
+        this.setState(self);
+    }
+
+    onSpeechResults(e) {
+        this.onSpeechSwitch().then(() => {
+            alert(JSON.stringify(e));
+        });
+    }
 
     handleClickLibrary = () => {
         launchImageLibrary(pickerOptions, this.handleResult);
@@ -95,20 +79,24 @@ export default class photoSelector extends Component {
             alert(JSON.stringify(response.error));
         else {
             this.setState({ modalVisible: false }, () => {
-                this.props.navigation.navigate('detectionSelectorView');
+                this.props.navigation.navigate('detectionSelectorView', {
+                    data: response
+                });
             });
         }
     }
 
     render() {
+        const { voice } = this.state;
+
         return (
             <View style={localStyles.container}>
                 <Modal 
                     isVisible={this.state.modalVisible}
-                    style={localStyles.bottomModal}
+                    style={AppStyle.bottomModal}
                     onBackdropPress={() => this.setState({ modalVisible: false })}
                 >
-                    <View style={localStyles.modalContent}>
+                    <View style={AppStyle.modalContent}>
                         <Button
                             raised
                             borderRadius={50}
@@ -154,7 +142,53 @@ export default class photoSelector extends Component {
                     title='CHOIX DE LA PHOTO'
                     onPress={() => this.setState({ modalVisible: true })}
                 />
+                
+                <VoiceBar 
+                    active={voice.enable}
+                    onPressButton={() => this.onSpeechSwitch()}
+                />
+
             </View>
         );
     }
 }
+
+
+const localStyles = StyleSheet.create({
+    containerImage: {
+        width: '100%',
+        height: '100%'
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: '#F5FCFF'
+    },
+    logo: {
+        position: 'absolute',
+        top: '5%',
+        width: '100%',
+        textAlign: 'center',
+        color: '#7289DA',
+        fontWeight: 'bold',
+        fontSize: 38
+    },
+    logoSmall: {
+        color: '#23272A',
+        fontWeight: 'normal'
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: '500',
+        textAlign: 'center',
+        margin: 10,
+        color: '#7289DA'
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+        padding: 50
+    }
+});
