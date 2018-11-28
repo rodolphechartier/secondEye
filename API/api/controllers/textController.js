@@ -98,25 +98,28 @@ exports.read_text = function(req, res) {
             },
             function(callback) {
                 sleep.sleep(seconds);
+                console.log(options_reading);
                 request.get(options_reading, (error, response, body) => {
                     if (error) {
-                        callback(err,null);
-                    }
-                    var data = JSON.parse(body);
-                    var message = '';
-                    if (data['status'] === 'Succeeded') {
-                        for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
-                            message += data['recognitionResult']['lines'][i]['text'] + '. ';
-                        }
-                        seconds = 12;
-                        callback(null, message);
+                        callback(error,null);
                     } else {
-                        seconds += 4;
+                        var data = JSON.parse(body);
+                        var message = '';
+                        if (data['status'] === 'Succeeded') {
+                            for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
+                                message += data['recognitionResult']['lines'][i]['text'] + '. ';
+                            }
+                            seconds = 12;
+                            callback(null, message);
+                        } else {
+                            seconds += 4;
+                        }
                     }
                 });
             },
             function (err, n) {
                 if(err) {
+                    console.log(err);
                     res.status(400).send(err);
                 } else if (n) {
                     res.json({message: n});
