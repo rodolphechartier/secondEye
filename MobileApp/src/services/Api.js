@@ -88,7 +88,7 @@ export function saveFace(image, name){
     });
 }
 
-export function getFace(image){
+export function getAddedFace(image){
     return RequestHandler(`${URL}/face/added`, {
         method: 'POST',
         headers:{
