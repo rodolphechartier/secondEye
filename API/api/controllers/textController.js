@@ -96,15 +96,19 @@ exports.read_text = function(req, res) {
             if (error) {
                 res.status(400).send({message: "An error occured while reading the text"});
             }
-            var data = JSON.parse(body);
-            var message = '';
-            if (data['status'] === 'Succeeded') {
-                for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
-                    message += data['recognitionResult']['lines'][i]['text'] + '. ';
+            try {
+                var data = JSON.parse(body);
+                var message = '';
+                if (data['status'] === 'Succeeded') {
+                    for (var i = 0, len = data['recognitionResult']['lines'].length; i < len; i++) {
+                        message += data['recognitionResult']['lines'][i]['text'] + '. ';
+                    }
+                    res.status(200).send({message: message});
+                } else {
+                    res.status(400).send({message: 'The text has not been analyzed yet'});
                 }
-                res.status(200).send({message: message});
-            } else {
-                res.status(200).send({message: 'The text has not been analyzed yet'});
+            } catch (err) {
+                res.status(400).send({message: 'The text has not been analyzed yet'});
             }
         });
     });
