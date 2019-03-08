@@ -38,7 +38,7 @@ const expect = chai.expect;
 
 
 describe('Face', function () {
-    this.timeout(15000);
+    this.timeout(30000);
 
     beforeEach((done) => {
         //Before each test if needed
@@ -53,12 +53,11 @@ describe('Face', function () {
                 .end((err, res) => {
                     expect(err).to.be.null;
 
-                    console.log(res.body);
-
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.global.should.be.a('string');
+
                     expect(res.body.faces.length).to.not.equal(0);
+                    expect(res.body.faces.length).to.be.equal(5);
 
                     done();
                 });
@@ -72,7 +71,6 @@ describe('Face', function () {
                 .send({ data: 'Hello' })
                 .end((err, res) => {
                     expect(err).to.not.be.null;
-
                     res.should.have.status(400);
 
                     done();
@@ -88,12 +86,11 @@ describe('Face', function () {
                 .end((err, res) => {
                     expect(err).to.be.null;
 
-                    console.log(res.body);
-
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.global.should.be.a('string');
+
                     expect(res.body.faces.length).to.not.equal(0);
+                    expect(res.body.faces.length).to.be.equal(5);
 
                     done();
                 });
@@ -107,8 +104,6 @@ describe('Face', function () {
                 .send({ data: images.lola, name: 'Lola' })
                 .end((err, res) => {
                     expect(err).to.be.null;
-
-                    console.log(res.body);
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -127,11 +122,9 @@ describe('Face', function () {
                 .end((err, res) => {
                     expect(err).to.be.null;
 
-                    console.log(res.body);
-
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    expect(res.body.message).to.equal('"Oh, this is Lola"');
+                    expect(res.body.message).to.equal('Oh, this is Lola');
 
                     done();
                 });
@@ -155,8 +148,6 @@ describe('Text', function () {
                 .send({ data: images.faces })
                 .end((err, res) => {
                     expect(err).to.be.null;
-
-                    console.log(res.body);
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -190,8 +181,6 @@ describe('Text', function () {
                 .send({ data: images.texts })
                 .end((err, res) => {
                     expect(err).to.be.null;
-
-                    console.log(res.body);
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');
@@ -235,8 +224,6 @@ describe('Vision', function () {
                 .send({ data: images.landscapes })
                 .end((err, res) => {
                     expect(err).to.be.null;
-
-                    console.log(res.body);
 
                     res.should.have.status(200);
                     res.body.should.be.a('object');

@@ -2,6 +2,8 @@
 
 var request = require('request');
 var converteur = require('../services/b64ToBinary').convertDataURIToBinary;
+const API = require('../services/api');
+const errorsConstants = require('../constants/errors');
 
 exports.test_faces = function (req, res) {
     res.json({
@@ -17,61 +19,28 @@ exports.test_faces = function (req, res) {
  *
  * @return :
  *      - 400, error
+ *      - 520, unknown error
  *      - 200, json
  *
  * Cette fonction fait appel à l'API Microsoft :
  * Face:detect
  */
-exports.get_faces = function (req, res) {
-    // Request parameters
-    var params = {
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "age,gender,smile,glasses"
-    };
+exports.get_faces = (req, res) => {
     const sourceImage = req.body.data;
     const imageBinary = converteur(sourceImage);
 
-    //Request options
-    const options = {
-        uri: process.env.FACE_API_URL + '/detect',
-        qs: params,
-        body: imageBinary,
-        headers: {
-            'Content-Type': 'application/octet-stream',
-            'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
+    API.getFacesInformations(imageBinary).then(result => {
+        res.json(result);
+    }).catch(e => {
+        if (e.httpCode) {
+            res.status(e.httpCode).send(e);
+        } else {
+            let error = errorsConstants.UNHANDLED_ERROR;
+            error.error = e + "";
+            res.status(error.httpCode).json(error);
         }
-    };
-
-    // Perform the REST API call.
-    request.post(options, (error, response, body) => {
-        if (error) {
-            res.status(400).send(error);
-        }
-        let data = JSON.parse(body);
-        var faceCount = '"I detect ' + data.length + ' faces!"';
-        var response = '{"global" :' + faceCount + ', "faces":[';
-        var i;
-        for (i = 0; i < data.length; i++) {
-            if (i == 0)
-                var responseString = '{"message": ';
-            else
-                var responseString = ',{"message": ';
-            if (data.length == 1)
-                responseString += '"Here is what I detect in this face';
-            else
-                responseString += '"For the face number ' + (i + 1);
-            var gender = data[i].faceAttributes.gender;
-            responseString += '. The gender is : ' + gender;
-            var age = data[i].faceAttributes.age;
-            responseString += '. The age is estimated to : ' + age + '."}';
-            response += responseString;
-        }
-        response += ']}'
-        response = JSON.parse(response);
-        res.json(response);
     });
-};
+}
 
 /*
  * Fonction qui détecte les émotions sur les visages dans une image
@@ -80,6 +49,7 @@ exports.get_faces = function (req, res) {
  *
  * @return :
  *      - 400, error
+ *      - 520, unknown error
  *      - 200, json
  *
  * Cette fonction fait appel à l'API Microsoft :
@@ -89,61 +59,16 @@ exports.get_emotions = (req, res) => {
     const sourceImage = req.body.data;
     const imageBinary = converteur(sourceImage);
 
-    // Request parameters
-    const params = {
-        "returnFaceId": "true",
-        "returnFaceLandmarks": "false",
-        "returnFaceAttributes": "age,gender,smile,glasses,emotion"
-    };
-
-    //Request options
-    const options = {
-        uri: process.env.FACE_API_URL + '/detect',
-        qs: params,
-        body: imageBinary,
-        headers: {
-            'Content-Type': 'application/octet-stream',
-            'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
+    API.getFacesEmotions(imageBinary).then(result => {
+        res.json(result);
+    }).catch(e => {
+        if (e.httpCode) {
+            res.status(e.httpCode).send(e);
+        } else {
+            let error = errorsConstants.UNHANDLED_ERROR;
+            error.error = e + "";
+            res.status(error.httpCode).json(error);
         }
-    };
-
-    // Perform the REST API call.
-    request.post(options, (error, response, body) => {
-        if (error) {
-            res.status(400).send(error);
-        }
-
-        const data = JSON.parse(body);
-        const analyse = {
-            global: `I detect ${data.length} faces!`,
-            faces: []
-        };
-
-        for (let i = 0; i < data.length; i++) {
-            var emotion = data[i].faceAttributes.emotion;
-            var rightEmotion = "";
-            var biggestScore = 0;
-
-            for (let key in emotion) {
-                if (emotion[key] > biggestScore) {
-                    biggestScore = emotion[key];
-                    rightEmotion = key;
-                }
-            }
-
-            if (data.length == 1)
-                var startString = 'Here is what I detect in this face';
-            else
-                var startString = `For the face number ${i + 1}`;
-
-            let message = {
-                message: `${startString}. The most shown emotion is ${rightEmotion}.`
-            }
-
-            analyse['faces'].push(message);
-        }
-
-        res.json(analyse);
     });
 };
 
@@ -212,7 +137,9 @@ exports.add_face = function (req, res) {
                     res.status(400).send(error);
                 }
 
-                res.status(200).send({message: 'Person added'});
+                res.status(200).send({
+                    message: 'Person added'
+                });
             })
         });
     });
@@ -284,7 +211,7 @@ exports.get_added_face = function (req, res) {
             });
 
             const getName = {
-                uri: process.env.FACE_API_URL  + `persongroups/group1/persons/${savedIDs[0]}`,
+                uri: process.env.FACE_API_URL + `persongroups/group1/persons/${savedIDs[0]}`,
                 headers: {
                     'Content-Type': 'application/json',
                     'Ocp-Apim-Subscription-Key': process.env.FACE_API_KEY
@@ -298,7 +225,9 @@ exports.get_added_face = function (req, res) {
 
                 let name = JSON.parse(body);
 
-                res.status(200).send({message : 'Oh, this is '+ name.name});
+                res.status(200).send({
+                    message: 'Oh, this is ' + name.name
+                });
             });
 
         });
